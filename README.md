@@ -5,4 +5,4 @@ This repository contains the board support files for the MAX35104EVKIT2/MAX32625
 
 Please note that this respository uses git submodules. The proper way to clone is:
 
-git clone --recursive -j8 https://github.com/maxim-ic-flow/max35104evkit_max32625mbed.git
+git clone --recursive -j8 https://github.com/maxim-ic-flow/max35104evkit2_max32625mbed.git
