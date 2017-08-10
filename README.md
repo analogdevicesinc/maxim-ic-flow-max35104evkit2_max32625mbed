@@ -17,5 +17,5 @@ To switch between branches:
 
 ```
 git checkout <branch>
-git submodule update --recursive --remote
+git submodule update --recursive --remote --init
 ```
