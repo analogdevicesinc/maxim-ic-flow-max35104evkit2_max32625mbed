@@ -30,22 +30,44 @@
  * ownership rights.
  *
  ******************************************************************************/
+#ifndef __BOARD_H__
 
 #include "max3510x.h"
 
-extern void max3510x_int_isr(void * pv);
+#define BOARD_EVENT_SYSTICK		(1<<0)
+#define BOARD_EVENT_MAX35104 	(1<<1)
+#define BOARD_EVENT_BUTTON		(1<<2)
+#define BOARD_EVENT_UART		(1<<3)
 
-void board_wait( uint32_t us );
+
+void board_led( uint8_t ndx, bool on );
+
+
 void board_init( void );
+uint32_t board_sleep( void );
+	
+
+
+void board_wait_ms( uint32_t ms );
 
 void board_printf( const char *p_format, ... );
 
-uint16_t board_uart_write( void *pv, uint16_t length );
+uint16_t board_uart_write( const void *pv, uint16_t length );
 uint16_t board_uart_read( void *pv, uint16_t length );
 
 uint32_t board_timestamp(void);
-	
-void board_tdc_interrupt_enable(bool b);
+float_t board_elapsed_time( uint32_t timestamp, float_t *p_elapsed );
 bool board_flash_write( const void *p_data, uint16_t size );
 void board_flash_read( void *p_data, uint16_t size );
-	
+uint16_t board_crc( const void * p_data, uint32_t size );
+
+uint16_t board_max3510x_interrupt_status( void );
+float_t board_temp_sensor_resistance( float_t therm_time, float_t ref_time );
+float_t board_clock_set( float_t frequency );
+void board_clock_enable(bool);
+bool board_switch( uint8_t switch_ndx, bool * p_changed );
+
+void board_reset(void);
+
+#endif
+
